@@ -1,0 +1,47 @@
+{
+  "name": "sugo-module-scoped",
+  "version": "1.0.0",
+  "description": "Scoped module for SUGOS",
+  "main": "lib",
+  "scripts": {
+    "test": "node ./ci/test.js",
+    "prepare": "node ./ci/build.js && node ./ci/shim.js"
+  },
+  "repository": "realglobe-Inc/sugo-module-scoped",
+  "keywords": [
+    "SUGOS"
+  ],
+  "author": {
+    "name": "Taka Okunishi",
+    "email": "okunishinish@gmail.com",
+    "url": "http://okunishitaka.com"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/realglobe-Inc/sugo-module-scoped/issues"
+  },
+  "homepage": "https://github.com/realglobe-Inc/sugo-module-scoped#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "ababel": "^2.0.1",
+    "ababel-es2015": "^2.0.1",
+    "amocha": "^2.0.0",
+    "ape-formatting": "^1.0.2",
+    "ape-releasing": "^4.0.4",
+    "ape-tasking": "^4.0.9",
+    "ape-tmpl": "^5.0.20",
+    "ape-updating": "^4.1.0",
+    "co": "^4.6.0",
+    "coz": "^6.0.20",
+    "injectmock": "^2.0.0",
+    "sugo-module-base": "^1.2.3",
+    "sugos-travis": "^2.0.7"
+  },
+  "engines": {
+    "node": ">=6",
+    "npm": ">=4"
+  },
+  "peerDependencies": {
+    "sugo-module-base": ">=1"
+  }
+}
