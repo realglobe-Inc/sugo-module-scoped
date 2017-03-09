@@ -20,3 +20,4 @@ let hub = sugoHub({
   }
 })
 
+hub.listen(3000)
