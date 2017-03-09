@@ -71,12 +71,15 @@ $ npm install sugo-module-scoped --save
 Usage
 ---------
 
+### Define Module
+
 ```javascript
 'use strict'
 
 const { scoped } = require('sugo-module-scope')
 const sugoHub = require('sugo-hub')
 
+// Define module with dynamic scope variables
 const fruitShop = scoped((session) => ({
   buy (product, amount) {
     let ordererId = session.who
@@ -94,6 +97,32 @@ let hub = sugoHub({
   }
 })
 
+hub.listen(3000)
+
+```
+
+### Call from caller
+
+```javascript
+'use strict'
+
+const sugoCaller = require('sugo-caller')
+const sugoScope = require('sugo-scope')
+const co = require('co')
+
+let caller = sugoCaller({ /* ... */ })
+let session = sugoScope()
+
+co(function * () {
+  let shoppingMall = yield caller.connect('shoppingMall')
+
+  // Login and store into session scope
+  session.who = yield shoppingMall.get('auth').signin('user01', 'xxx-password-01')
+
+  // Access to module with a scope
+  let fruitShop = shoppingMall.get('fruitShop').with(session)
+  yield fruitShop.buy('Orange', 3)
+}).catch((err) => console.error(err))
 
 ```
 
@@ -120,6 +149,10 @@ This software is released under the [Apache-2.0 License](https://github.com/real
 Links
 ------
 
++ [SUGOS][sugos_url]
++ [Realglobe, Inc.][realglobe,_inc__url]
 
+[sugos_url]: https://github.com/realglobe-Inc/sugos
+[realglobe,_inc__url]: http://realglobe.jp
 
 <!-- Links End -->
