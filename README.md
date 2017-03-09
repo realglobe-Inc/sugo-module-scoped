@@ -71,12 +71,15 @@ $ npm install sugo-module-scoped --save
 Usage
 ---------
 
+### Define Module
+
 ```javascript
 'use strict'
 
 const { scoped } = require('sugo-module-scope')
 const sugoHub = require('sugo-hub')
 
+// Define module with dynamic scope variables
 const fruitShop = scoped((session) => ({
   buy (product, amount) {
     let ordererId = session.who
@@ -97,6 +100,8 @@ let hub = sugoHub({
 hub.listen(3000)
 
 ```
+
+### Call from caller
 
 ```javascript
 'use strict'
