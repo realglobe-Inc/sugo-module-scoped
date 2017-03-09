@@ -3,6 +3,7 @@
 const { scoped } = require('sugo-module-scope')
 const sugoHub = require('sugo-hub')
 
+// Define module with dynamic scope variables
 const fruitShop = scoped((session) => ({
   buy (product, amount) {
     let ordererId = session.who
