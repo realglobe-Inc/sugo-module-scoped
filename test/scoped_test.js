@@ -34,6 +34,13 @@ describe('scoped', function () {
     throws(() => greeting.tryToRewriteSelf({ name: 'John' }))
   }))
 
+  it('Use defaults', () => co(function * () {
+    let v = scoped((a1 = 'x', a2 = 'y') => ({
+      all: (...v) => [ a1, a2, ...v ]
+    }))
+    deepEqual(v.all('z'), [ 'x', 'y', 'z' ])
+  }))
+
   it('Nested scope', () => co(function * () {
     let module = scoped((app, client) => ({
       doSomething (v1) {
