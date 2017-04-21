@@ -1,6 +1,6 @@
 'use strict'
 
-const { scoped } = require('sugo-module-scope')
+const { scoped } = require('sugo-module-scoped')
 const sugoHub = require('sugo-hub')
 
 // Define module with dynamic scope variables
