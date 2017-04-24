@@ -78,6 +78,7 @@ Usage
 
 const { scoped } = require('sugo-module-scoped')
 const sugoHub = require('sugo-hub')
+const sugoActor = require('sugo-actor')
 
 // Define module with dynamic scope variables
 const fruitShop = scoped((session) => ({
@@ -89,11 +90,11 @@ const fruitShop = scoped((session) => ({
 
 let hub = sugoHub({
   localActors: {
-    shoppingMall: {
+    shoppingMall: sugoActor({
       modules: {
         fruitShop
       }
-    }
+    })
   }
 })
 
