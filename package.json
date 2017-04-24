@@ -1,6 +1,6 @@
 {
   "name": "sugo-module-scoped",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Scoped module for SUGOS",
   "main": "lib",
   "scripts": {
