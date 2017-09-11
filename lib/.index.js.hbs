@@ -8,7 +8,7 @@
 const bound = require('./bound')
 const scoped = require('./scoped')
 
-let lib = scoped.bind(this)
+const lib = scoped.bind(this)
 
 Object.assign(lib, scoped, {
   bound,

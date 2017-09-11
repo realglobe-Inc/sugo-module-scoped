@@ -12,15 +12,15 @@ const co = require('co')
 describe('bound', function () {
   this.timeout(3000)
 
-  before(() => co(function * () {
+  before(async () => {
 
-  }))
+  })
 
-  after(() => co(function * () {
+  after(async () => {
 
-  }))
+  })
 
-  it('Bound', () => co(function * () {
+  it('Bound', async () => {
     let greeting = scoped((self) => ({
       sayHey (message) {
         return `Hey, I am ${self.name}, ${message}`
@@ -29,7 +29,7 @@ describe('bound', function () {
     let tomGreeting = bound(greeting, { name: 'Tom' })
     let hey = tomGreeting.sayHey('nice to meet you')
     equal(hey, 'Hey, I am Tom, nice to meet you')
-  }))
+  })
 })
 
 /* global describe, before, after, it */

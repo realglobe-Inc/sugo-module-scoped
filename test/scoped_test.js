@@ -5,22 +5,22 @@
 'use strict'
 
 const scoped = require('../lib/scoped.js')
-const { equal, throws, deepEqual } = require('assert')
+const {equal, throws, deepEqual} = require('assert')
 const co = require('co')
 
 describe('scoped', function () {
   this.timeout(3000)
 
-  before(() => co(function * () {
+  before(async () => {
 
-  }))
+  })
 
-  after(() => co(function * () {
+  after(async () => {
 
-  }))
+  })
 
-  it('Scoped', () => co(function * () {
-    let greeting = scoped((self) => ({
+  it('Scoped', async () => {
+    const greeting = scoped((self) => ({
       sayHey (message) {
         return `Hey, I am ${self.name}, ${message}`
       },
@@ -28,31 +28,31 @@ describe('scoped', function () {
         self.name = 'foo' // Invalid inject
       }
     }))
-    let hey = greeting.sayHey({ name: 'John' }, 'nice to meet you')
+    const hey = greeting.sayHey({name: 'John'}, 'nice to meet you')
     equal(hey, 'Hey, I am John, nice to meet you')
 
-    throws(() => greeting.tryToRewriteSelf({ name: 'John' }))
-  }))
+    throws(() => greeting.tryToRewriteSelf({name: 'John'}))
+  })
 
-  it('Use defaults', () => co(function * () {
-    let v = scoped((a1 = 'x', a2 = 'y') => ({
-      all: (...v) => [ a1, a2, ...v ]
+  it('Use defaults', async () => {
+    const v = scoped((a1 = 'x', a2 = 'y') => ({
+      all: (...v) => [a1, a2, ...v]
     }))
-    deepEqual(v.all('z'), [ 'x', 'y', 'z' ])
-  }))
+    deepEqual(v.all('z'), ['x', 'y', 'z'])
+  })
 
-  it('Nested scope', () => co(function * () {
-    let module = scoped((app, client) => ({
+  it('Nested scope', async () => {
+    const module = scoped((app, client) => ({
       doSomething (v1) {
-        return [ app.name, client.name, v1 ]
+        return [app.name, client.name, v1]
       }
     }))
     deepEqual(
-      module.doSomething({ name: 'a1' }, { name: 'c1' }, 'hoge'),
-      [ 'a1', 'c1', 'hoge' ]
+      module.doSomething({name: 'a1'}, {name: 'c1'}, 'hoge'),
+      ['a1', 'c1', 'hoge']
     )
 
-  }))
+  })
 })
 
 /* global describe, before, after, it */
